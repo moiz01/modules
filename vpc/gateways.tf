@@ -6,8 +6,8 @@
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.base.id
 
-  tags = merge(local.tags, {
-    Name = "${var.network_info.vpc_name}"
+  tags = merge(var.tags, {
+    Name = "${var.vpc_name}-InternetGateway"
 
   })
 }

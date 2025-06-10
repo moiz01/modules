@@ -16,8 +16,8 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.internet_gateway.id
   }
 
-  tags = merge(local.tags, {
-    Name = "${var.network_info.vpc_name}-Public"
+  tags = merge(var.tags, {
+    Name = "${var.vpc_name}-Public"
 
   })
 }

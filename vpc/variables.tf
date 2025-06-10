@@ -14,13 +14,22 @@
 #   default = ["192.168.0.0/24", "192.168.1.0/24", "192.168.2.0/24"]
 
 # }
-
+variable "vpc_name" {
+  description = "Name of the VPC"
+  type        = string
+  default     = "ntier-primary"
+  
+}
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+  default     = ""
+  
+}
 variable "network_info" {
   description = "Network information for the VPC"
   type = object({
-    vpc_name = string
-    vpc_cidr = string
-
+   
     public_subnets = list(object({
       name = string
       cidr = string
@@ -33,9 +42,7 @@ variable "network_info" {
     }))
   })
   default = {
-    vpc_name = "ntier-primary"
-    vpc_cidr = "192.168.0.0/16"
-
+  
     public_subnets = [{
       name = "web1"
       cidr = "192.168.0.0/24"
@@ -79,4 +86,17 @@ variable "network_info" {
 ###########
 
 
+variable "tags" {
+  type = map(string)
+  description = "A map of tags to add to all resources"
+  default = {
+    environment = ""
+    Terraform   = ""
+    CreatedOn   = ""
+    Project     = ""
+    Owner       = ""
+    Version     = ""
+  }
+  
+}
 

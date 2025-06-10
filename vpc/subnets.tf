@@ -14,8 +14,8 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
   availability_zone       = var.network_info.public_subnets[count.index].az
 
-  tags = merge(local.tags, {
-    Name = "${var.network_info.vpc_name}-Public-${var.network_info.public_subnets[count.index].az}"
+  tags = merge(var.tags, {
+    Name = "${var.vpc_name}-Public-${var.network_info.public_subnets[count.index].az}"
 
   })
   depends_on = [aws_vpc.base]
@@ -30,8 +30,8 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = true
   availability_zone       = var.network_info.private_subnets[count.index].az
 
-  tags = merge(local.tags, {
-    Name = "${var.network_info.vpc_name}-Private-${var.network_info.private_subnets[count.index].az}"
+  tags = merge(var.tags, {
+    Name = "${var.vpc_name}-Private-${var.network_info.private_subnets[count.index].az}"
 
   })
   depends_on = [aws_vpc.base]
